@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="NeoTerrainData" format=3 uid="uid://b51l8oyx8olel"]
+
+[ext_resource type="Script" uid="uid://h8dte3f5cyy7" path="res://addons/neo_terrain/neo_terrain_data.gd" id="1_wvtmk"]
+
+[resource]
+script = ExtResource("1_wvtmk")

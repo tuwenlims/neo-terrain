@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bwotsss0s26ch"]
+
+[ext_resource type="Texture2D" uid="uid://bw1r1d1gqligm" path="res://addons/neo_terrain/colors/color_icon.svg" id="1_li0rs"]
+[ext_resource type="Script" uid="uid://d3ykm70ihx57s" path="res://addons/neo_terrain/colors/color.gd" id="2_xh7p2"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_w5ncg"]
+allow_unpress = true
+
+[sub_resource type="DPITexture" id="DPITexture_li0rs"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[node name="Color" type="Button" unique_id=330577167]
+size_flags_horizontal = 3
+theme_override_colors/icon_normal_color = Color(0.46328264, 0.7219593, 0.002486209, 1)
+theme_override_colors/icon_focus_color = Color(0.6779696, 0.8331756, 0.4014917, 1)
+theme_override_colors/icon_pressed_color = Color(0.2779696, 0.4331756, 0.0014917254, 1)
+theme_override_colors/icon_hover_color = Color(0.6779696, 0.8331756, 0.4014917, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.2779696, 0.4331756, 0.0014917254, 1)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_w5ncg")
+text = "Color"
+icon = ExtResource("1_li0rs")
+alignment = 0
+script = ExtResource("2_xh7p2")
+
+[node name="DeleteButton" type="Button" parent="." unique_id=836287946]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -31.0
+grow_horizontal = 0
+grow_vertical = 2
+icon = SubResource("DPITexture_li0rs")
+flat = true
+
+[node name="EditButton" type="Button" parent="." unique_id=2001511596]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_right = -33.0
+grow_horizontal = 0
+grow_vertical = 2
+icon = SubResource("DPITexture_li0rs")
+flat = true
+
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="EditButton" to="." method="_on_edit_button_pressed"]

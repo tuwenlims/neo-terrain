@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dk37yuwi7u6i4"]
+
+[ext_resource type="Script" uid="uid://vxfeaw6h6pb6" path="res://addons/neo_terrain/select_terrain/entry.gd" id="1_bda4l"]
+
+[node name="Entry" type="Panel" unique_id=539388439]
+custom_minimum_size = Vector2(480, 47.2)
+script = ExtResource("1_bda4l")
+
+[node name="CheckButton" type="CheckButton" parent="." unique_id=436840142]
+texture_filter = 1
+custom_minimum_size = Vector2(480, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.39999962
+offset_bottom = 0.3999977
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+theme_override_constants/icon_max_width = 32
+expand_icon = true
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

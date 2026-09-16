@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dkckt8b0a3xfr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5ncg"]
+bg_color = Color(0, 0, 0, 0.2)
+
+[node name="PanelContainer" type="PanelContainer" unique_id=170988520]
+theme_override_styles/panel = SubResource("StyleBoxFlat_w5ncg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=351002047]
+layout_mode = 2
+
+[node name="Atlas" type="TextureRect" parent="VBoxContainer" unique_id=1213953639]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+stretch_mode = 5
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer" unique_id=1714622121]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Up" type="Button" parent="VBoxContainer/Buttons" unique_id=2063023610]
+layout_mode = 2
+
+[node name="Down" type="Button" parent="VBoxContainer/Buttons" unique_id=1496884244]
+layout_mode = 2
+
+[node name="UseTemplate" type="Button" parent="VBoxContainer/Buttons" unique_id=1046713884]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/Buttons" unique_id=2066087616]
+layout_mode = 2

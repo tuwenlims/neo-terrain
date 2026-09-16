@@ -1,0 +1,293 @@
+[gd_scene format=3 uid="uid://c55esa7uahbg4"]
+
+[ext_resource type="Script" uid="uid://cls38ijv2cxvp" path="res://addons/neo_terrain/dock/dock.gd" id="1_tuaux"]
+[ext_resource type="Script" uid="uid://bp0ja7pgoru5v" path="res://addons/neo_terrain/colors/add_color.gd" id="2_ajnll"]
+[ext_resource type="ButtonGroup" uid="uid://di65dj5gvw6yx" path="res://addons/neo_terrain/entry/entry_button_group.tres" id="2_tuaux"]
+[ext_resource type="Script" uid="uid://plw6m5mwbkbk" path="res://addons/neo_terrain/tile_view/tile_view.gd" id="2_xf81y"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_tndk8"]
+
+[sub_resource type="DPITexture" id="DPITexture_xf81y"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_wqm2d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbvmx"]
+bg_color = Color(0, 0, 0, 0.4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frr23"]
+bg_color = Color(0, 0, 0, 0.19607843)
+
+[node name="DockContent" type="Control" unique_id=276744417 node_paths=PackedStringArray("flow_container")]
+custom_minimum_size = Vector2(1000, 125)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tuaux")
+flow_container = NodePath("VBoxContainer/HSplitContainer/VBoxContainer/PanelContainer/ScrollContainer/FlowContainer")
+button_group = ExtResource("2_tuaux")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=53774233]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1209332405]
+layout_mode = 2
+
+[node name="DrawButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=113884896]
+layout_mode = 2
+offset_transform_enabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_tndk8")
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="LineButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=274280241]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_tndk8")
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="RestangleButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=2063029601]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_tndk8")
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="FillButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1760571327]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_tndk8")
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=1215256015]
+layout_mode = 2
+
+[node name="EraserButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1953055164]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_wqm2d")
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="ColorPickerButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1304767150]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_wqm2d")
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=1484096876]
+visible = false
+layout_mode = 2
+
+[node name="RotateLeftButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1472011721]
+visible = false
+layout_mode = 2
+toggle_mode = true
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="RotateRightButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1443047777]
+visible = false
+layout_mode = 2
+toggle_mode = true
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="HFlipButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1141522621]
+visible = false
+layout_mode = 2
+toggle_mode = true
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="VFlipButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1253715543]
+visible = false
+layout_mode = 2
+toggle_mode = true
+icon = SubResource("DPITexture_xf81y")
+flat = true
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer" unique_id=868347327]
+layout_mode = 2
+size_flags_vertical = 3
+split_offsets = PackedInt32Array(-265)
+split_offset = -265
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer" unique_id=1384975410]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer" unique_id=776109318]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rbvmx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer/PanelContainer" unique_id=962186097]
+layout_mode = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=1438266544]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/v_separation = 8
+
+[node name="LowerToolbar" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer" unique_id=673341427]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar" unique_id=1982729255]
+layout_mode = 2
+icon = SubResource("DPITexture_xf81y")
+
+[node name="EditButton" type="Button" parent="VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar" unique_id=658994680]
+layout_mode = 2
+icon = SubResource("DPITexture_xf81y")
+
+[node name="DeleteButton" type="Button" parent="VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar" unique_id=217493503]
+layout_mode = 2
+icon = SubResource("DPITexture_xf81y")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HSplitContainer" unique_id=1700343076]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Workspace" type="Control" parent="VBoxContainer/HSplitContainer/Panel" unique_id=565221783]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/Panel/Workspace" unique_id=31835145]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 228.0
+offset_top = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TileView" type="Control" parent="VBoxContainer/HSplitContainer/Panel/Workspace/ScrollContainer" unique_id=1351245311]
+layout_mode = 2
+script = ExtResource("2_xf81y")
+
+[node name="SettingsPanel" type="Panel" parent="VBoxContainer/HSplitContainer/Panel/Workspace" unique_id=981155557]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 219.0
+offset_bottom = -13.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frr23")
+
+[node name="HeadText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel" unique_id=248528307]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 32.0
+text = "Terrain settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel" unique_id=650574705]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 38.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/ScrollContainer" unique_id=597761157]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorsContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer" unique_id=1013594763]
+layout_mode = 2
+script = ExtResource("2_ajnll")
+
+[node name="AddColorButton" type="Button" parent="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer" unique_id=1226959466]
+layout_mode = 2
+text = "Add new color"
+icon = SubResource("DPITexture_xf81y")
+
+[node name="AddNewTexture" type="Button" parent="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel" unique_id=1840350871]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.5
+offset_top = -66.0
+offset_right = 104.5
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Add new texture"
+icon = SubResource("DPITexture_xf81y")
+
+[node name="UniqueIDText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel" unique_id=1577564995]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.5
+offset_top = -29.0
+offset_right = 104.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0.57, 0.57, 0.57, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Unique ID: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AddTextureButton" type="Button" parent="VBoxContainer/HSplitContainer/Panel/Workspace" unique_id=1618008488]
+layout_mode = 1
+offset_left = 227.0
+offset_top = 10.0
+offset_right = 327.0
+offset_bottom = 41.0
+text = "Add texture"
+icon = SubResource("DPITexture_xf81y")
+
+[node name="NoTerrainText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/Panel" unique_id=786385859]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "No selected terrains yet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer/AddColorButton" to="VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer" method="_on_add_color_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/Panel/Workspace/AddTextureButton" to="." method="_on_add_texture_button_pressed"]
