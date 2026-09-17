@@ -9,11 +9,11 @@ var undo_manager: EditorUndoRedoManager
 var current_entry: Control
 
 
-@onready var colors_container: VBoxContainer = $VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer
-@onready var workspace: Control = $VBoxContainer/HSplitContainer/Panel/Workspace
-@onready var no_terrain_text: RichTextLabel = $VBoxContainer/HSplitContainer/Panel/NoTerrainText
-@onready var head_text: RichTextLabel = $VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/HeadText
-@onready var unique_id_text: RichTextLabel = $VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/UniqueIDText
+@onready var colors_container: VBoxContainer = $VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer
+@onready var workspace: Control = $VBoxContainer/HSplitContainer/RightWindowPanel/Workspace
+@onready var no_terrain_text: RichTextLabel = $VBoxContainer/HSplitContainer/RightWindowPanel/NoTerrainText
+@onready var head_text: RichTextLabel = $VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/HeadText
+@onready var unique_id_text: RichTextLabel = $VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/UniqueIDText
 
 @export var flow_container: FlowContainer 
 @export var button_group: ButtonGroup
@@ -29,26 +29,26 @@ var sort_rule: Callable = func(a, b):
 
 func _ready() -> void:
 	# Toolbar
-	$VBoxContainer/HBoxContainer/DrawButton.icon = get_theme_icon("Edit", "EditorIcons")
-	$VBoxContainer/HBoxContainer/LineButton.icon = get_theme_icon("Line", "EditorIcons")
-	$VBoxContainer/HBoxContainer/RestangleButton.icon = get_theme_icon("Rectangle", "EditorIcons")
-	$VBoxContainer/HBoxContainer/FillButton.icon = get_theme_icon("Bucket", "EditorIcons")
-	$VBoxContainer/HBoxContainer/EraserButton.icon = get_theme_icon("Eraser", "EditorIcons")
-	$VBoxContainer/HBoxContainer/ColorPickerButton.icon = get_theme_icon("ColorPick", "EditorIcons")
-	$VBoxContainer/HBoxContainer/RotateLeftButton.icon = get_theme_icon("RotateLeft", "EditorIcons")
-	$VBoxContainer/HBoxContainer/RotateRightButton.icon = get_theme_icon("RotateRight", "EditorIcons")
-	$VBoxContainer/HBoxContainer/HFlipButton.icon = get_theme_icon("MirrorX", "EditorIcons")
-	$VBoxContainer/HBoxContainer/VFlipButton.icon = get_theme_icon("MirrorY", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/DrawButton.icon = get_theme_icon("Edit", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/LineButton.icon = get_theme_icon("Line", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/RestangleButton.icon = get_theme_icon("Rectangle", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/FillButton.icon = get_theme_icon("Bucket", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/EraserButton.icon = get_theme_icon("Eraser", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/ColorPickerButton.icon = get_theme_icon("ColorPick", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/RotateLeftButton.icon = get_theme_icon("RotateLeft", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/RotateRightButton.icon = get_theme_icon("RotateRight", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/HFlipButton.icon = get_theme_icon("MirrorX", "EditorIcons")
+	$VBoxContainer/ToolbarContainer/HBoxContainer/VFlipButton.icon = get_theme_icon("MirrorY", "EditorIcons")
 	
 	# Lower Toolbar
-	$VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar/AddButton.icon = get_theme_icon("Add", "EditorIcons")
-	$VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar/EditButton.icon = get_theme_icon("Tools", "EditorIcons")
-	$VBoxContainer/HSplitContainer/VBoxContainer/LowerToolbar/DeleteButton.icon = get_theme_icon("Remove", "EditorIcons")
+	$VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/AddButton.icon = get_theme_icon("Add", "EditorIcons")
+	$VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/EditButton.icon = get_theme_icon("Tools", "EditorIcons")
+	$VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/DeleteButton.icon = get_theme_icon("Remove", "EditorIcons")
+	$VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/SearchLine.right_icon = get_theme_icon("Search", "EditorIcons")
 	
-	$VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer/AddColorButton.icon = get_theme_icon("Add", "EditorIcons")
-	$VBoxContainer/HSplitContainer/Panel/Workspace/SettingsPanel/AddNewTexture.icon = get_theme_icon("Add", "EditorIcons")
+	$VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer/AddColorButton.icon = get_theme_icon("Add", "EditorIcons")
+	$VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/AddNewTexture.icon = get_theme_icon("Add", "EditorIcons")
 	
-	$VBoxContainer/HSplitContainer/Panel/Workspace/AddTextureButton.icon = get_theme_icon("Add", "EditorIcons")
 	
 	if current_entry == null:
 		workspace.hide()
