@@ -17,7 +17,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wqm2d")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wqm2d")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_q0uv5")
-flat = true
 script = ExtResource("1_iounw")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1114866520]

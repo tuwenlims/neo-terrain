@@ -109,3 +109,17 @@ func _on_delete_button_pressed() -> void:
 func _on_add_texture_button_pressed() -> void:
 		var popup = preload("res://addons/neo_terrain/add_tile_set/add_tile_set.tscn").instantiate()
 		EditorInterface.popup_dialog_centered(popup)
+
+func _on_search_line_text_changed(new_text: String) -> void:
+	var text = new_text.strip_edges()
+	
+	if text .is_empty():
+		for terrain in flow_container.get_children():
+			terrain.show()
+		return
+	
+	for terrain in flow_container.get_children():
+		if terrain.entry_name.findn(text) != -1:
+			terrain.show()
+		else:
+			terrain.hide()

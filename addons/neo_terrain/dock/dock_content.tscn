@@ -27,6 +27,10 @@ bg_color = Color(0, 0, 0, 0.4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5vvs"]
 bg_color = Color(0, 0, 0, 0.32156864)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frr23"]
 bg_color = Color(0, 0, 0, 0.19607843)
@@ -195,6 +199,8 @@ flat = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Search Terrain"
+context_menu_enabled = false
+emoji_menu_enabled = false
 right_icon = SubResource("DPITexture_xf81y")
 
 [node name="RightWindowPanel" type="Panel" parent="VBoxContainer/HSplitContainer" unique_id=1700343076]
@@ -317,4 +323,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/SearchLine" to="." method="_on_search_line_text_changed"]
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer/AddColorButton" to="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer" method="_on_add_color_button_pressed"]
