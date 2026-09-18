@@ -1,27 +1,30 @@
 [gd_scene format=3 uid="uid://bslyov8oili7"]
 
-[ext_resource type="Script" uid="uid://bk8remy51v5qh" path="res://addons/neo_terrain/entry/id_edit.gd" id="1_4q5g8"]
-[ext_resource type="Script" uid="uid://bkmfpgtxj7fqd" path="res://addons/neo_terrain/entry/edit_window.gd" id="1_fvxbn"]
+[ext_resource type="Script" uid="uid://bkmfpgtxj7fqd" path="res://addons/neo_terrain/terrains/edit_terrains/edit_terrain.gd" id="1_6nyji"]
+[ext_resource type="Script" uid="uid://bk8remy51v5qh" path="res://addons/neo_terrain/terrains/id_edit.gd" id="2_klrgt"]
 
-[node name="EditWindow" type="ConfirmationDialog" unique_id=210326664]
+[node name="EditWindow" type="ConfirmationDialog" unique_id=210326664 node_paths=PackedStringArray("name_edit", "icon_edit", "id_edit")]
 oversampling_override = 1.0
 title = "Edit Terrain"
 position = Vector2i(0, 36)
-size = Vector2i(350, 191)
+size = Vector2i(400, 200)
 visible = true
 exclusive = false
-script = ExtResource("1_fvxbn")
+script = ExtResource("1_6nyji")
+name_edit = NodePath("GridContainer/NameEdit")
+icon_edit = NodePath("GridContainer/IconEdit")
+id_edit = NodePath("GridContainer/IDEdit")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=193758711]
 custom_minimum_size = Vector2(334, 70)
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 342.0
-offset_bottom = 142.0
+offset_right = 392.0
+offset_bottom = 151.0
 offset_transform_enabled = true
 columns = 2
 
-[node name="Name" type="RichTextLabel" parent="GridContainer" unique_id=453793654]
+[node name="NameLabel" type="RichTextLabel" parent="GridContainer" unique_id=453793654]
 custom_minimum_size = Vector2(106, 31)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -33,10 +36,11 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "Dirt"
 placeholder_text = "Terrain Name"
 max_length = 32
 
-[node name="ID" type="RichTextLabel" parent="GridContainer" unique_id=918046516]
+[node name="IDLabel" type="RichTextLabel" parent="GridContainer" unique_id=918046516]
 custom_minimum_size = Vector2(106, 31)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -48,11 +52,12 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "dirt"
 placeholder_text = "Terrain ID"
 max_length = 32
-script = ExtResource("1_4q5g8")
+script = ExtResource("2_klrgt")
 
-[node name="Icon" type="RichTextLabel" parent="GridContainer" unique_id=1825712579]
+[node name="IconLabel" type="RichTextLabel" parent="GridContainer" unique_id=1825712579]
 custom_minimum_size = Vector2(106, 31)
 layout_mode = 2
 size_flags_horizontal = 3

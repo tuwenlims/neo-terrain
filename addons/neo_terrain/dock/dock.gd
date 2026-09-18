@@ -1,22 +1,28 @@
 @tool
 extends Control
 
-const DATA_PATH = "res://addons/neo_terrain/terrain_storage.tres"
-var terrain_data = NeoTerrainGlobals.current_terrain_set
-
-var undo_manager: EditorUndoRedoManager
-
-var current_entry: Control
+@export_group("Scenes")
+@export var entry_scene: PackedScene
+@export var create_window: PackedScene
+@export var edit_window: PackedScene
 
 
-@onready var colors_container: VBoxContainer = $VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer
-@onready var workspace: Control = $VBoxContainer/HSplitContainer/RightWindowPanel/Workspace
-@onready var no_terrain_text: RichTextLabel = $VBoxContainer/HSplitContainer/RightWindowPanel/NoTerrainText
-@onready var head_text: RichTextLabel = $VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/HeadText
-@onready var unique_id_text: RichTextLabel = $VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/UniqueIDText
-
+@export_group("Nodes")
 @export var flow_container: FlowContainer 
+@export var colors_container: VBoxContainer
+
+@export var workspace: Control 
+@export var no_terrain_text: RichTextLabel 
+
+@export var head_text: RichTextLabel 
+@export var unique_id_text: RichTextLabel 
+
+
+@export_group("Resources")
 @export var button_group: ButtonGroup
+
+var terrain_data = NeoTerrainGlobals.current_terrain_set
+var current_entry: Control
 
 signal update_overlay
 signal force_show_terrains 
@@ -47,22 +53,22 @@ func _ready() -> void:
 	$VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/SearchLine.right_icon = get_theme_icon("Search", "EditorIcons")
 	
 	$VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer/AddColorButton.icon = get_theme_icon("Add", "EditorIcons")
-	$VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/AddNewTexture.icon = get_theme_icon("Add", "EditorIcons")
-	
+	$VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/HeadText/AddNewTileMapButton.icon = get_theme_icon("Add", "EditorIcons")
 	
 	if current_entry == null:
 		workspace.hide()
 		no_terrain_text.show()
 		
-func refresh_interface() -> void:
+func update_entries() -> void:
 	for child in flow_container.get_children():
 		child.queue_free()
 		
 	for data in terrain_data.terrains:
-		var entry = load("res://addons/neo_terrain/entry/entry.tscn").instantiate()
+		var entry = entry_scene.instantiate()
 		entry.get_child(1).text = data["name"]
 		if data["texture"] != null:
 			entry.get_child(0).texture = data["texture"]
+			
 		entry.colors = data["colors"]
 		entry.entry_name = data["name"]
 		entry.terrain_id = data["terrain_id"]
@@ -71,21 +77,19 @@ func refresh_interface() -> void:
 		
 		flow_container.add_child(entry)
 		entry.button_group = button_group
-
-func canvas_mouse_exit() -> void:
-	pass
-
-func about_to_be_visible(is_visible: bool) -> void:
-	pass
+		
+	current_entry = null
+	workspace.hide()
+	no_terrain_text.show()
 	
 func _on_add_button_pressed() -> void:
-	var popup = preload("res://addons/neo_terrain/entry/create_window.tscn").instantiate()
+	var popup = create_window.instantiate()
 	popup.container = flow_container
 	EditorInterface.popup_dialog_centered(popup)
 
 func _on_edit_button_pressed() -> void:
 	if current_entry != null:
-		var popup = preload("res://addons/neo_terrain/entry/edit_window.tscn").instantiate()
+		var popup = edit_window.instantiate()
 		EditorInterface.popup_dialog_centered(popup)
 		
 func _on_delete_button_pressed() -> void:
@@ -105,11 +109,6 @@ func _on_delete_button_pressed() -> void:
 		if terrain_data.terrains.size() == 0:
 			terrain_data.new_unique_id = 0
 
-
-func _on_add_texture_button_pressed() -> void:
-		var popup = preload("res://addons/neo_terrain/add_tile_set/add_tile_set.tscn").instantiate()
-		EditorInterface.popup_dialog_centered(popup)
-
 func _on_search_line_text_changed(new_text: String) -> void:
 	var text = new_text.strip_edges()
 	
@@ -123,3 +122,9 @@ func _on_search_line_text_changed(new_text: String) -> void:
 			terrain.show()
 		else:
 			terrain.hide()
+			
+func canvas_mouse_exit() -> void:
+	pass
+
+func about_to_be_visible(is_visible: bool) -> void:
+	pass

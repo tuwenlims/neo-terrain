@@ -11,7 +11,7 @@ var colors: Array[Dictionary]
 
 func _on_pressed() -> void:
 	NeoTerrainGlobals.dock.current_entry = self
-	NeoTerrainGlobals.dock.head_text.text = entry_name + " settings"
+	NeoTerrainGlobals.dock.head_text.text = entry_name + " (" + terrain_id + ")"
 	NeoTerrainGlobals.dock.unique_id_text.text = "Unique ID: " + str(unique_id)
 	for child in NeoTerrainGlobals.dock.colors_container.get_children():
 		if child.name != "AddColorButton":

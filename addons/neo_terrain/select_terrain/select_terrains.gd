@@ -11,6 +11,9 @@ class_name SelectTerrains
 var current_color: TerrainColor
 
 func _ready() -> void:
+	for child in v_box_container.get_children():
+			child.queue_free() 
+	
 	for terrain in NeoTerrainGlobals.current_terrain_set.terrains:
 		var spawned_entry = entry_scene.instantiate()
 		spawned_entry.select_terrains = self

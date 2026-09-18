@@ -1,55 +1,40 @@
 @tool
 extends ConfirmationDialog
 
-@onready var name_edit: LineEdit = $GridContainer/NameEdit
-@onready var icon_edit: EditorResourcePicker = $GridContainer/IconEdit
-@onready var id_edit: LineEdit = $GridContainer/IDEdit
+@export var name_edit: LineEdit
+@export var icon_edit: EditorResourcePicker
+@export var id_edit: LineEdit
 
 func _ready() -> void:
 	if NeoTerrainGlobals.dock.current_entry != null:
-		name_edit.text = NeoTerrainGlobals.dock.current_entry.get_child(1).text
+		name_edit.text = NeoTerrainGlobals.dock.current_entry.entry_name
 		icon_edit.edited_resource = NeoTerrainGlobals.dock.current_entry.get_child(0).texture
 		id_edit.text = NeoTerrainGlobals.dock.current_entry.terrain_id
 
 func _on_confirmed() -> void:
 	if name_edit.text.is_empty():
-		var dialog = AcceptDialog.new()
-		dialog.dialog_text = "Name cannot be empty"
-		EditorInterface.popup_dialog_centered(dialog)
-		await dialog.visibility_changed
-		dialog.queue_free()
+		show_alert_dialog("Name cannot be empty")
 		return
 	elif id_edit.text.is_empty():
-		var dialog = AcceptDialog.new()
-		dialog.dialog_text = "ID cannot be empty"
-		EditorInterface.popup_dialog_centered(dialog)
-		await dialog.visibility_changed
-		dialog.queue_free()
+		show_alert_dialog("ID cannot be empty")
 		return
 	elif name_edit.text.is_empty() and id_edit.text.is_empty():
-		var dialog = AcceptDialog.new()
-		dialog.dialog_text = "ID and name cannot be empty"
-		EditorInterface.popup_dialog_centered(dialog)
-		await dialog.visibility_changed
-		dialog.queue_free()
+		show_alert_dialog("ID and name cannot be empty")
 		return
-	
+		
 	var dock = NeoTerrainGlobals.dock
 	
-	for i in range(dock.terrain_data.terrains.size()):
-		var terrain = dock.terrain_data.terrains[i]
+	for terrain in dock.terrain_data.terrains:
 		var id = terrain["terrain_id"]
-		if id_edit.text == id and i != dock.current_entry.get_index():
-			var dialog = AcceptDialog.new()
-			dialog.dialog_text = "This ID already use"
-			EditorInterface.popup_dialog_centered(dialog)
-			await dialog.visibility_changed
-			dialog.queue_free()
+		if id_edit.text == id and not id == dock.current_entry.terrain_id:
+			show_alert_dialog("This ID already use")
 			return
 	
 	var entry = NeoTerrainGlobals.dock.current_entry
+	
 	if icon_edit.edited_resource != null:
 		entry.get_child(0).texture =  icon_edit.edited_resource
+		
 	entry.get_child(1).text = name_edit.text
 	entry.terrain_id = id_edit.text
 	entry.entry_name = name_edit.text
@@ -63,5 +48,12 @@ func _on_confirmed() -> void:
 		return a["name"].nocasecmp_to(b["name"]) < 0
 	)
 	
-	dock.refresh_interface()
+	dock.update_entries()
 	dock.current_entry = entry
+
+func show_alert_dialog(dialog_text: String) -> void:
+	var dialog = AcceptDialog.new()
+	dialog.dialog_text = dialog_text
+	EditorInterface.popup_dialog_centered(dialog)
+	await dialog.visibility_changed
+	dialog.queue_free()

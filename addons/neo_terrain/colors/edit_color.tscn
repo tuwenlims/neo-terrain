@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ic8juvg7thrf"]
 
 [ext_resource type="Script" uid="uid://b0j86gcga3upv" path="res://addons/neo_terrain/colors/edit_color.gd" id="1_v31d2"]
-[ext_resource type="Script" uid="uid://bk8remy51v5qh" path="res://addons/neo_terrain/entry/id_edit.gd" id="2_ghmmd"]
+[ext_resource type="Script" uid="uid://bk8remy51v5qh" path="res://addons/neo_terrain/terrains/id_edit.gd" id="2_ghmmd"]
 
 [node name="EditColor" type="ConfirmationDialog" unique_id=32032020]
 oversampling_override = 1.0

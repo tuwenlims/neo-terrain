@@ -1,29 +1,37 @@
 [gd_scene format=3 uid="uid://emouqcpo8mri"]
 
-[ext_resource type="Script" uid="uid://xbp2vn0p0ru5" path="res://addons/neo_terrain/entry/create_window.gd" id="1_vlhgt"]
-[ext_resource type="Script" uid="uid://bk8remy51v5qh" path="res://addons/neo_terrain/entry/id_edit.gd" id="2_8m8s3"]
-[ext_resource type="Texture2D" uid="uid://d2m2st1tl453c" path="res://addons/neo_terrain/logo.png" id="2_tbwyh"]
+[ext_resource type="Script" uid="uid://xbp2vn0p0ru5" path="res://addons/neo_terrain/terrains/create_terrains/create_terrains.gd" id="1_u3hkc"]
+[ext_resource type="Texture2D" uid="uid://d2m2st1tl453c" path="res://addons/neo_terrain/logo.png" id="2_ap8hy"]
+[ext_resource type="PackedScene" uid="uid://cy1y8y17gyekh" path="res://addons/neo_terrain/terrains/entry/terrain_entry.tscn" id="2_ywt6b"]
+[ext_resource type="ButtonGroup" uid="uid://di65dj5gvw6yx" path="res://addons/neo_terrain/terrains/entry/terrain_entry_button_group.tres" id="3_tpkd1"]
+[ext_resource type="Script" uid="uid://bk8remy51v5qh" path="res://addons/neo_terrain/terrains/id_edit.gd" id="3_ywt6b"]
 
-[node name="CreateWindow" type="ConfirmationDialog" unique_id=210326664]
+[node name="CreateWindow" type="ConfirmationDialog" unique_id=210326664 node_paths=PackedStringArray("name_edit", "icon_edit", "id_edit")]
 oversampling_override = 1.0
 title = "Create Terrain"
-position = Vector2i(0, 36)
-size = Vector2i(350, 158)
+size = Vector2i(400, 200)
 visible = true
 exclusive = false
-script = ExtResource("1_vlhgt")
-base_icon = ExtResource("2_tbwyh")
+script = ExtResource("1_u3hkc")
+entry_scene = ExtResource("2_ywt6b")
+name_edit = NodePath("GridContainer/NameEdit")
+icon_edit = NodePath("GridContainer/IconEdit")
+id_edit = NodePath("GridContainer/IDEdit")
+button_group = ExtResource("3_tpkd1")
+base_icon = ExtResource("2_ap8hy")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=193758711]
-custom_minimum_size = Vector2(334, 70)
+custom_minimum_size = Vector2(350, 130)
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 342.0
-offset_bottom = 109.0
+offset_right = 392.0
+offset_bottom = 151.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 offset_transform_enabled = true
 columns = 2
 
-[node name="Name" type="RichTextLabel" parent="GridContainer" unique_id=453793654]
+[node name="NameLabel" type="RichTextLabel" parent="GridContainer" unique_id=453793654]
 custom_minimum_size = Vector2(106, 31)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -38,7 +46,7 @@ size_flags_vertical = 3
 placeholder_text = "Terrain Name"
 max_length = 32
 
-[node name="ID" type="RichTextLabel" parent="GridContainer" unique_id=1172845366]
+[node name="IDLabel" type="RichTextLabel" parent="GridContainer" unique_id=1172845366]
 custom_minimum_size = Vector2(106, 31)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -52,9 +60,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "Terrain ID"
 max_length = 32
-script = ExtResource("2_8m8s3")
+script = ExtResource("3_ywt6b")
 
-[node name="Type" type="RichTextLabel" parent="GridContainer" unique_id=785905606]
+[node name="TypeLabel" type="RichTextLabel" parent="GridContainer" unique_id=785905606]
 visible = false
 custom_minimum_size = Vector2(106, 31)
 layout_mode = 2
@@ -75,7 +83,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Match Corners and Sides"
 popup/item_2/id = 2
 
-[node name="Icon" type="RichTextLabel" parent="GridContainer" unique_id=1825712579]
+[node name="IconLabel" type="RichTextLabel" parent="GridContainer" unique_id=1825712579]
 custom_minimum_size = Vector2(106, 31)
 layout_mode = 2
 size_flags_horizontal = 3

@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cls38ijv2cxvp" path="res://addons/neo_terrain/dock/dock.gd" id="1_tuaux"]
 [ext_resource type="Script" uid="uid://bp0ja7pgoru5v" path="res://addons/neo_terrain/colors/add_color.gd" id="2_ajnll"]
-[ext_resource type="ButtonGroup" uid="uid://di65dj5gvw6yx" path="res://addons/neo_terrain/entry/entry_button_group.tres" id="2_tuaux"]
-[ext_resource type="Script" uid="uid://plw6m5mwbkbk" path="res://addons/neo_terrain/tile_view/tile_view.gd" id="2_xf81y"]
+[ext_resource type="ButtonGroup" uid="uid://di65dj5gvw6yx" path="res://addons/neo_terrain/terrains/entry/terrain_entry_button_group.tres" id="2_tuaux"]
+[ext_resource type="PackedScene" uid="uid://emouqcpo8mri" path="res://addons/neo_terrain/terrains/create_terrains/create_terrains_window.tscn" id="2_tupx1"]
+[ext_resource type="PackedScene" uid="uid://cy1y8y17gyekh" path="res://addons/neo_terrain/terrains/entry/terrain_entry.tscn" id="2_w5ncg"]
+[ext_resource type="PackedScene" uid="uid://bslyov8oili7" path="res://addons/neo_terrain/terrains/edit_terrains/edit_terrain_window.tscn" id="3_w5ncg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nfcu"]
 bg_color = Color(0, 0, 0, 0.32156864)
@@ -15,7 +17,7 @@ corner_radius_bottom_left = 5
 [sub_resource type="ButtonGroup" id="ButtonGroup_tndk8"]
 allow_unpress = true
 
-[sub_resource type="DPITexture" id="DPITexture_xf81y"]
+[sub_resource type="DPITexture" id="DPITexture_w5ncg"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
 "
 
@@ -32,11 +34,22 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wsa6"]
+bg_color = Color(0, 0, 0, 0.16078432)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frr23"]
 bg_color = Color(0, 0, 0, 0.19607843)
 
-[node name="DockContent" type="Control" unique_id=276744417 node_paths=PackedStringArray("flow_container")]
-custom_minimum_size = Vector2(1000, 125)
+[sub_resource type="DPITexture" id="DPITexture_tupx1"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[node name="DockContent" type="Control" unique_id=276744417 node_paths=PackedStringArray("flow_container", "colors_container", "workspace", "no_terrain_text", "head_text", "unique_id_text")]
+custom_minimum_size = Vector2(1000, 300)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,7 +57,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tuaux")
+entry_scene = ExtResource("2_w5ncg")
+create_window = ExtResource("2_tupx1")
+edit_window = ExtResource("3_w5ncg")
 flow_container = NodePath("VBoxContainer/HSplitContainer/LeftWindowContainer/EntriesContainer/ScrollContainer/FlowContainer")
+colors_container = NodePath("VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer")
+workspace = NodePath("VBoxContainer/HSplitContainer/RightWindowPanel/Workspace")
+no_terrain_text = NodePath("VBoxContainer/HSplitContainer/RightWindowPanel/NoTerrainLabel")
+head_text = NodePath("VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/HeadText")
+unique_id_text = NodePath("VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/HeadText/UniqueIDText")
 button_group = ExtResource("2_tuaux")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=53774233]
@@ -69,30 +90,34 @@ offset_transform_position = Vector2(0, 3)
 [node name="DrawButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=113884896]
 layout_mode = 2
 offset_transform_enabled = true
+tooltip_text = "Paint Tool"
 toggle_mode = true
 button_group = SubResource("ButtonGroup_tndk8")
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="LineButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=274280241]
 layout_mode = 2
+tooltip_text = "Line Tool"
 toggle_mode = true
 button_group = SubResource("ButtonGroup_tndk8")
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="RestangleButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=2063029601]
 layout_mode = 2
+tooltip_text = "Restangle Tool"
 toggle_mode = true
 button_group = SubResource("ButtonGroup_tndk8")
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="FillButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=1760571327]
 layout_mode = 2
+tooltip_text = "Fill Tool"
 toggle_mode = true
 button_group = SubResource("ButtonGroup_tndk8")
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=1215256015]
@@ -100,16 +125,18 @@ layout_mode = 2
 
 [node name="EraserButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=1953055164]
 layout_mode = 2
+tooltip_text = "Eraser Tool"
 toggle_mode = true
 button_group = SubResource("ButtonGroup_wqm2d")
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="ColorPickerButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=1304767150]
 layout_mode = 2
+tooltip_text = "Picker Tool"
 toggle_mode = true
 button_group = SubResource("ButtonGroup_wqm2d")
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=1484096876]
@@ -120,28 +147,28 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 toggle_mode = true
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="RotateRightButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=1443047777]
 visible = false
 layout_mode = 2
 toggle_mode = true
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="HFlipButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=1141522621]
 visible = false
 layout_mode = 2
 toggle_mode = true
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="VFlipButton" type="Button" parent="VBoxContainer/ToolbarContainer/HBoxContainer" unique_id=1253715543]
 visible = false
 layout_mode = 2
 toggle_mode = true
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer" unique_id=868347327]
@@ -182,33 +209,37 @@ offset_transform_position = Vector2(0, 2.5)
 
 [node name="AddButton" type="Button" parent="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer" unique_id=1982729255]
 layout_mode = 2
-icon = SubResource("DPITexture_xf81y")
+tooltip_text = "Add Terrain"
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="EditButton" type="Button" parent="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer" unique_id=658994680]
 layout_mode = 2
-icon = SubResource("DPITexture_xf81y")
+tooltip_text = "Edit Terrain"
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="DeleteButton" type="Button" parent="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer" unique_id=217493503]
 layout_mode = 2
-icon = SubResource("DPITexture_xf81y")
+tooltip_text = "Remove Terrain"
+icon = SubResource("DPITexture_w5ncg")
 flat = true
 
 [node name="SearchLine" type="LineEdit" parent="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer" unique_id=582595641]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Search Terrain"
 placeholder_text = "Search Terrain"
 context_menu_enabled = false
 emoji_menu_enabled = false
-right_icon = SubResource("DPITexture_xf81y")
+right_icon = SubResource("DPITexture_w5ncg")
 
 [node name="RightWindowPanel" type="Panel" parent="VBoxContainer/HSplitContainer" unique_id=1700343076]
 custom_minimum_size = Vector2(750, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Workspace" type="Control" parent="VBoxContainer/HSplitContainer/RightWindowPanel" unique_id=565221783]
+[node name="Workspace" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel" unique_id=1349320700]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -217,38 +248,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace" unique_id=31835145]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 228.0
-offset_top = 45.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TileView" type="Control" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/ScrollContainer" unique_id=1351245311]
+[node name="HeadText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace" unique_id=248528307]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-script = ExtResource("2_xf81y")
-
-[node name="SettingsPanel" type="Panel" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace" unique_id=981155557]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 219.0
-offset_bottom = -13.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_frr23")
-
-[node name="HeadText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel" unique_id=248528307]
-layout_mode = 0
-offset_right = 209.0
-offset_bottom = 32.0
-text = "Terrain settings"
+text = "Terrain"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AddNewTileMapButton" type="Button" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/HeadText" unique_id=955663023]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(-1, 900)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 31.0
+size_flags_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6wsa6")
+text = "Add new tilemap"
+icon = SubResource("DPITexture_w5ncg")
+
+[node name="UniqueIDText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/HeadText" unique_id=1027196343]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -19.0
+offset_bottom = 19.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.57, 0.57, 0.57, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Unique ID: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TileMapsEnriesContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace" unique_id=31835145]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/TileMapsEnriesContainer" unique_id=2042466461]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SettingsPanel" type="Panel" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace" unique_id=981155557]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frr23")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel" unique_id=650574705]
 layout_mode = 1
@@ -272,7 +320,7 @@ script = ExtResource("2_ajnll")
 [node name="AddColorButton" type="Button" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer" unique_id=1226959466]
 layout_mode = 2
 text = "Add new color"
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_w5ncg")
 
 [node name="AddNewTexture" type="Button" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel" unique_id=1840350871]
 custom_minimum_size = Vector2(100, 0)
@@ -289,27 +337,9 @@ offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Add new texture"
-icon = SubResource("DPITexture_xf81y")
+icon = SubResource("DPITexture_tupx1")
 
-[node name="UniqueIDText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel" unique_id=1577564995]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -104.5
-offset_top = -29.0
-offset_right = 104.5
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/default_color = Color(0.57, 0.57, 0.57, 1)
-theme_override_font_sizes/normal_font_size = 14
-text = "Unique ID: "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NoTerrainText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/RightWindowPanel" unique_id=786385859]
+[node name="NoTerrainLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/RightWindowPanel" unique_id=786385859]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
