@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://emouqcpo8mri" path="res://addons/neo_terrain/terrains/create_terrains/create_terrains_window.tscn" id="2_tupx1"]
 [ext_resource type="PackedScene" uid="uid://cy1y8y17gyekh" path="res://addons/neo_terrain/terrains/entry/terrain_entry.tscn" id="2_w5ncg"]
 [ext_resource type="PackedScene" uid="uid://bslyov8oili7" path="res://addons/neo_terrain/terrains/edit_terrains/edit_terrain_window.tscn" id="3_w5ncg"]
+[ext_resource type="PackedScene" uid="uid://dcynl61kqg8nt" path="res://addons/neo_terrain/tileset_atlas/select_tileset_atlas/select_tileset_atlas.tscn" id="5_w5ncg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nfcu"]
 bg_color = Color(0, 0, 0, 0.32156864)
@@ -60,6 +61,7 @@ script = ExtResource("1_tuaux")
 entry_scene = ExtResource("2_w5ncg")
 create_window = ExtResource("2_tupx1")
 edit_window = ExtResource("3_w5ncg")
+select_tileset_atlas = ExtResource("5_w5ncg")
 flow_container = NodePath("VBoxContainer/HSplitContainer/LeftWindowContainer/EntriesContainer/ScrollContainer/FlowContainer")
 colors_container = NodePath("VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer")
 workspace = NodePath("VBoxContainer/HSplitContainer/RightWindowPanel/Workspace")
@@ -263,7 +265,7 @@ offset_right = 200.0
 offset_bottom = 31.0
 size_flags_horizontal = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_6wsa6")
-text = "Add new tilemap"
+text = "Add new tileset atlas"
 icon = SubResource("DPITexture_w5ncg")
 
 [node name="UniqueIDText" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/HeadText" unique_id=1027196343]
@@ -284,11 +286,11 @@ text = "Unique ID: "
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TileMapsEnriesContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace" unique_id=31835145]
+[node name="TilesetAtlasEnriesContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace" unique_id=31835145]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/TileMapsEnriesContainer" unique_id=2042466461]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/TilesetAtlasEnriesContainer" unique_id=2042466461]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -354,4 +356,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/HSplitContainer/LeftWindowContainer/LowerToolbarContainer/HBoxContainer/SearchLine" to="." method="_on_search_line_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/HeadText/AddNewTileMapButton" to="." method="_on_add_new_tile_map_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer/AddColorButton" to="VBoxContainer/HSplitContainer/RightWindowPanel/Workspace/SettingsPanel/ScrollContainer/VBoxContainer/ColorsContainer" method="_on_add_color_button_pressed"]

@@ -20,7 +20,6 @@ func _handles(object: Object) -> bool:
 		NeoTerrainGlobals.current_tile_set = object.tile_set
 		NeoTerrainGlobals.current_tile_map = object
 		
-		dock_content.terrain_data = object.terrain_set
 		dock_content.update_entries()
 	return object is NeoTileMapLayer
 

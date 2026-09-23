@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c1t4lsnqkcgso"]
+
+[ext_resource type="Script" uid="uid://bmeimqxha2oam" path="res://addons/neo_terrain/select_terrain/select_terrains.gd" id="1_urid0"]
+
+[node name="AcceptDialog" type="AcceptDialog" unique_id=2142293229]
+oversampling_override = 1.0
+title = "Select TileSet Atlas"
+position = Vector2i(0, 36)
+size = Vector2i(516, 557)
+visible = true
+script = ExtResource("1_urid0")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1593522544]
+custom_minimum_size = Vector2(500, 500)
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 508.0
+offset_bottom = 508.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1791088546]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="ScrollContainer/VBoxContainer" unique_id=971521763]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer/Panel" unique_id=1004216191]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 71.0
+grow_vertical = 2

@@ -5,6 +5,7 @@ extends Control
 @export var entry_scene: PackedScene
 @export var create_window: PackedScene
 @export var edit_window: PackedScene
+@export var select_tileset_atlas: PackedScene
 
 
 @export_group("Nodes")
@@ -60,6 +61,11 @@ func _ready() -> void:
 		no_terrain_text.show()
 		
 func update_entries() -> void:
+	terrain_data = NeoTerrainGlobals.current_terrain_set
+	
+	if terrain_data == null or terrain_data.terrains.is_empty():
+		return
+	
 	for child in flow_container.get_children():
 		child.queue_free()
 		
@@ -123,6 +129,22 @@ func _on_search_line_text_changed(new_text: String) -> void:
 		else:
 			terrain.hide()
 			
+func _on_add_new_tile_map_button_pressed() -> void:
+	var tileset = NeoTerrainGlobals.current_tile_set
+	if not tileset:
+		var dialog = AcceptDialog.new()
+		dialog.dialog_text = "TileSet is null!"
+		EditorInterface.popup_dialog_centered(dialog)
+		await dialog.visibility_changed
+		dialog.queue_free()
+		return
+		
+	var popup = select_tileset_atlas.instantiate()
+	EditorInterface.popup_dialog_centered(popup)
+	
+func add_tileset_atlas_entry(atlas_id: int) -> void:
+	pass
+
 func canvas_mouse_exit() -> void:
 	pass
 

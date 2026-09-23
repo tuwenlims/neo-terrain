@@ -3,4 +3,4 @@
 extends TileMapLayer
 class_name NeoTileMapLayer
 
-@export var terrain_set: TerrainSet = TerrainSet.new()
+@export var terrain_set: TerrainSet

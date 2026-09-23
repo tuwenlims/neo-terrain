@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bpfedqhttww6m"]
+
+[ext_resource type="Script" uid="uid://hg5v31f82u78" path="res://addons/neo_terrain/tileset_atlas/select_tileset_atlas_entry/select_tileset_atlas_entry.gd" id="1_qmeir"]
+
+[node name="TileSetAtlasButton" type="Button" unique_id=1291719378]
+texture_filter = 1
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+alignment = 0
+script = ExtResource("1_qmeir")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

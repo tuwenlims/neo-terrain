@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dcynl61kqg8nt"]
+
+[ext_resource type="Script" uid="uid://6oo125k6k32y" path="res://addons/neo_terrain/tileset_atlas/select_tileset_atlas/select_tileset_atlas.gd" id="1_4ja26"]
+[ext_resource type="PackedScene" uid="uid://bpfedqhttww6m" path="res://addons/neo_terrain/tileset_atlas/select_tileset_atlas_entry/select_tileset_atlas_entry.tscn" id="2_4ja26"]
+
+[node name="AcceptDialog" type="AcceptDialog" unique_id=2142293229 node_paths=PackedStringArray("v_box_container", "no_tileset_label")]
+oversampling_override = 1.0
+title = "Select Tileset Atlas"
+position = Vector2i(0, 36)
+size = Vector2i(516, 557)
+visible = true
+script = ExtResource("1_4ja26")
+select_tileset_atlas_entry = ExtResource("2_4ja26")
+v_box_container = NodePath("PanelContainer/ScrollContainer/VBoxContainer")
+no_tileset_label = NodePath("PanelContainer/NoTilesetLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2099790691]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 508.0
+offset_bottom = 508.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer" unique_id=1593522544]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer" unique_id=1791088546]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NoTilesetLabel" type="RichTextLabel" parent="PanelContainer" unique_id=127343992]
+visible = false
+layout_mode = 2
+text = "No tileset atlas :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/TileSetAtlasButton" to="PanelContainer/ScrollContainer/VBoxContainer/TileSetAtlasButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/@Button@24071" to="PanelContainer/ScrollContainer/VBoxContainer/@Button@24071" method="_on_pressed"]

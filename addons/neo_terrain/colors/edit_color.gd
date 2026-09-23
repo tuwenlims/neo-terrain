@@ -46,7 +46,7 @@ func _on_confirmed() -> void:
 	dock.current_entry.colors[index]["darker_color"] = color.darker_color
 
 
-func _on_select_terrains_pressed() -> void:
-	var popup = preload("res://addons/neo_terrain/select_terrain/select_terrains.tscn").instantiate()
-	popup.current_color = color
-	EditorInterface.popup_dialog_centered(popup)
+#func _on_select_terrains_pressed() -> void:
+	#var popup = preload("res://addons/neo_terrain/select_terrain/select_terrains.tscn").instantiate()
+	#popup.current_color = color
+	#EditorInterface.popup_dialog_centered(popup)

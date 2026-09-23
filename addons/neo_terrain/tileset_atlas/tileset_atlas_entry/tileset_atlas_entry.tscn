@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dhljo2iwm0c4g"]
+
+[ext_resource type="Script" uid="uid://dkhn686hnggdt" path="res://addons/neo_terrain/tileset_atlas/tileset_atlas_entry/tileset_atlas_entry.gd" id="1_0e552"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opho0"]
+bg_color = Color(0, 0, 0, 0.13725491)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcl3p"]
+bg_color = Color(0, 0, 0, 0.16078432)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cad8m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vi6h3"]
+
+[sub_resource type="DPITexture" id="DPITexture_vsm5u"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[node name="TilesetAtlasEntry" type="Panel" unique_id=693919025]
+custom_minimum_size = Vector2(200, 0)
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_opho0")
+script = ExtResource("1_0e552")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1914917293]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AtlasTexturRect" type="TextureRect" parent="VBoxContainer" unique_id=493188003]
+texture_filter = 1
+custom_maximum_size = Vector2(180, -1)
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=528085011]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-5, -1.5)
+offset_transform_scale = Vector2(0.95, 0.95)
+offset_transform_pivot = Vector2(100, 32)
+theme_override_styles/panel = SubResource("StyleBoxFlat_rcl3p")
+
+[node name="FileNameLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer" unique_id=1122532616]
+custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(-1, 32)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cad8m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vi6h3")
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=2122017774]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="OpenEditorButton" type="Button" parent="VBoxContainer/PanelContainer/ButtonsContainer" unique_id=369860929]
+layout_mode = 2
+tooltip_text = "Open Tileset Atlas Editor"
+text = "Open editor"
+icon = SubResource("DPITexture_vsm5u")
+flat = true
+
+[node name="RemoveButton" type="Button" parent="VBoxContainer/PanelContainer/ButtonsContainer" unique_id=360184252]
+layout_mode = 2
+tooltip_text = "Remove Tileset Atlas"
+icon = SubResource("DPITexture_vsm5u")
+flat = true
